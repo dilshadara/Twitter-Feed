@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Learning_Experiment.Models.TweetTimelineOption>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<base target="_parent" />
+
+<div class="jumbotron">
+
+
+    <ul class="list-group" style="height:800px; overflow:auto">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item">
+                <b>@item.UserName</b>  @item.ScreenName  @item.CreateDate <br />
+                @Html.Raw(item.TextAsHTML)
+
+                @if (item.MediaType == "Photo")
+                {
+                    <a href="@item.Expandad_URL"><img src="@item.DisplayUrl" style="width:100%" /></a>
+                }
+
+                @if (item.MediaType == "iFrame")
+                {
+                    <iframe src="@item.DisplayUrl" width="100%" height="500px"></iframe>
+                }
+
+            </li>
+        }
+    </ul>
+
+</div>
+@* Without Development: https://publish.twitter.com/#  In this process twitter will provide you the URL and you just incorporate it into your HTML*@
+<div class="jumbotron">
+    @*<div class="col-md-5">*@
+    <a class="twitter-timeline" data-width="400" data-height="800" data-theme="dark" href="https://twitter.com/ResonateAU?ref_src=twsrc%5Etfw">Tweets by ResonateAU</a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    @*</div>*@
+
+</div>
+
+
+
+
+
+
